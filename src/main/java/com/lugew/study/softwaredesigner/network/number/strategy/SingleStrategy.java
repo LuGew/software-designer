@@ -7,7 +7,5 @@ package com.lugew.study.softwaredesigner.network.number.strategy;
  **/
 public abstract class SingleStrategy<T extends Number> extends AbstractStrategy<T> {
 
-    public static SingleStrategy getInstance() {
-        return null;
-    }
+
 }

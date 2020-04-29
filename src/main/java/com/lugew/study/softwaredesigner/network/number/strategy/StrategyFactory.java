@@ -11,7 +11,15 @@ import java.util.Map;
  **/
 @UtilityClass
 public class StrategyFactory {
-    private Map<String, String> strategyMap = new HashMap<String, String>(){{
-        put()
+    private final Map<String, Strategy> strategyMap = new HashMap<String, Strategy>(){{
+        put("integer", SingleIntegerStrategy.getInstance());
     }};
+
+    public Strategy getStrategy(String type) {
+        return strategyMap.get(type);
+    }
+
+    public static void main(String[] args) {
+        StrategyFactory.getStrategy("integer").binary(12345);
+    }
 }
