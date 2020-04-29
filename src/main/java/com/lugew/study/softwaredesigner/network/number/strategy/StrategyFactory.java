@@ -12,7 +12,7 @@ import java.util.Map;
 @UtilityClass
 public class StrategyFactory {
     private final Map<String, Strategy> strategyMap = new HashMap<String, Strategy>(){{
-        put("integer", SingleIntegerStrategy.getInstance());
+        put("Integer", SingleIntegerStrategy.getInstance());
     }};
 
     public Strategy getStrategy(String type) {

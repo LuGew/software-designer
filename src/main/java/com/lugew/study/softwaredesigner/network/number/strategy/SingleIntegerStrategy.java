@@ -1,6 +1,5 @@
 package com.lugew.study.softwaredesigner.network.number.strategy;
 
-
 import java.util.Arrays;
 
 /**
@@ -11,6 +10,8 @@ public class SingleIntegerStrategy extends SingleStrategy<Integer> {
     private static final SingleIntegerStrategy instance = new SingleIntegerStrategy();
 
     private SingleIntegerStrategy() {
+        this.bits = 32;
+        this.chars = new char[this.bits];
     }
 
     public static SingleIntegerStrategy getInstance() {
@@ -19,12 +20,15 @@ public class SingleIntegerStrategy extends SingleStrategy<Integer> {
 
     @Override
     public String binary(Integer integer) {
-        StringBuilder result = new StringBuilder();
-        int temp;
-        while ((temp = integer / 2) != 0) {
-            result.append(integer % 2);
-            integer = temp;
+        chars[0] = integer < 0 ? ONE : ZERO;
+
+        int index = 31;
+        while (integer != 0) {
+            chars[index] = map.get(integer % 2);
+            integer /= 2;
+            index--;
         }
-        return result.reverse().toString();
+        zeroPadding(index);
+        return Arrays.toString(chars);
     }
 }

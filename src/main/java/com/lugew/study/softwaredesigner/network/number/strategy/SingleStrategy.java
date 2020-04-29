@@ -7,5 +7,9 @@ package com.lugew.study.softwaredesigner.network.number.strategy;
  **/
 public abstract class SingleStrategy<T extends Number> extends AbstractStrategy<T> {
 
-
+    protected void zeroPadding(int start) {
+        for (int i = start; i > 0; i--) {
+            chars[i] = ZERO;
+        }
+    }
 }
