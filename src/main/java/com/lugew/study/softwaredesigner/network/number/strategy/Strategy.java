@@ -1,7 +1,7 @@
 package com.lugew.study.softwaredesigner.network.number.strategy;
 
 /**
- * @author LuGew
+ * @author XINWEN95
  * @since 2020/4/28 23:37
  **/
 public interface Strategy<T extends Number> {
@@ -11,7 +11,7 @@ public interface Strategy<T extends Number> {
      * @param t 数
      * @return 字符表示
      */
-    String binary(T t);
+    char[] binary(T t);
 
     /**
      * 原码
@@ -19,7 +19,7 @@ public interface Strategy<T extends Number> {
      * @param t 数
      * @return 字符表示
      */
-    String trueForm(T t);
+    char[] trueForm(T t);
 
     /**
      * 反码
@@ -27,7 +27,7 @@ public interface Strategy<T extends Number> {
      * @param t 数
      * @return 字符表示
      */
-    String onesComplement(T t);
+    char[] onesComplement(T t);
 
     /**
      * 补码
@@ -35,7 +35,7 @@ public interface Strategy<T extends Number> {
      * @param t 数
      * @return 字符表示
      */
-    String twosComplement(T t);
+    char[] twosComplement(T t);
 
     /**
      * 移码
@@ -43,5 +43,6 @@ public interface Strategy<T extends Number> {
      * @param t 数
      * @return 字符表示
      */
-    String offsetBinary(T t);
+    char[] offsetBinary(T t);
+
 }

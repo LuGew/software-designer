@@ -1,12 +1,11 @@
 package com.lugew.study.softwaredesigner.network.number.strategy;
 
-import java.util.Arrays;
-
 /**
  * @author LuGew
  * @since 2020/4/28 23:51
  **/
 public class SingleIntegerStrategy extends SingleStrategy<Integer> {
+
     private static final SingleIntegerStrategy instance = new SingleIntegerStrategy();
 
     private SingleIntegerStrategy() {
@@ -20,23 +19,13 @@ public class SingleIntegerStrategy extends SingleStrategy<Integer> {
 
 
     @Override
-    public String binary(Integer integer) {
-        /*chars[0] = integer < 0 ? ONE : ZERO;
-
-        int index = 31;
-        while (integer != 0) {
-            chars[index] = map.get(integer % 2);
-            integer /= 2;
-            index--;
-        }
-        zeroPadding(index);
-        return Arrays.toString(chars);*/
-        return "";
+    public char[] binary(Integer integer) {
+        return twosComplement(integer);
     }
 
-    private char[] trueFormChars(Integer integer) {
+    @Override
+    public char[] trueForm(Integer integer) {
         chars[0] = integer < 0 ? ONE : ZERO;
-
         int index = 31;
         while (integer != 0) {
             chars[index] = map.get(integer % 2);
@@ -48,31 +37,32 @@ public class SingleIntegerStrategy extends SingleStrategy<Integer> {
     }
 
     @Override
-    public String trueForm(Integer integer) {
-        return Arrays.toString(trueFormChars(integer));
-    }
-
-    @Override
-    public String onesComplement(Integer integer) {
-        char[] chars = trueFormChars(integer);
+    public char[] onesComplement(Integer integer) {
+        char[] chars = trueForm(integer);
         for (int i = 1, length = chars.length; i < length; i++) {
             chars[i] = (chars[i] == ZERO ? ONE : ZERO);
         }
-        return Arrays.toString(chars);
+        return chars;
     }
 
     @Override
-    public String twosComplement(Integer integer) {
-        return null;
+    public char[] twosComplement(Integer integer) {
+        char[] chars = onesComplement(integer);
+        for (int i = chars.length - 1; i > 0; i--) {
+            if (chars[i] == ZERO) {
+                chars[i] = ONE;
+                break;
+            } else {
+                chars[i] = ZERO;
+            }
+        }
+        return chars;
     }
 
     @Override
-    public String offsetBinary(Integer integer) {
+    public char[] offsetBinary(Integer integer) {
         return null;
     }
 
-    public static void main(String[] args) {
-        SingleIntegerStrategy singleIntegerStrategy = new SingleIntegerStrategy();
-        System.out.println(singleIntegerStrategy.trueForm(-1) + singleIntegerStrategy.onesComplement(-1));
-    }
+
 }
