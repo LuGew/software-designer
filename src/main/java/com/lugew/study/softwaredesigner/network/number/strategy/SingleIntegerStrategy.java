@@ -2,7 +2,7 @@ package com.lugew.study.softwaredesigner.network.number.strategy;
 
 /**
  * @author LuGew
- * @since 2020/4/28 23:51
+ * @since 2020/5/10 9:45
  **/
 public class SingleIntegerStrategy extends SingleStrategy<Integer> {
 
