@@ -36,9 +36,9 @@ class SingleIntegerStrategySpecification {
     }
 
     @Test
-    void givenTrueFormWhenInputIntegerMinValueThenOutput10000000000000000000000000000000() {
-        assertThat(singleIntegerStrategy.trueForm(Integer.MIN_VALUE))
-                .isEqualTo("10000000000000000000000000000000".toCharArray());
+    void givenTrueFormWhenInputIntegerMinValueThenOutput11111111111111111111111111111111() {
+        assertThat(singleIntegerStrategy.trueForm(Integer.MIN_VALUE + 1))
+                .isEqualTo("11111111111111111111111111111111".toCharArray());
     }
 
     @Test
@@ -64,4 +64,16 @@ class SingleIntegerStrategySpecification {
         assertThat(singleIntegerStrategy.trueForm(0))
                 .isEqualTo("00000000000000000000000000000000".toCharArray());
     }
+
+    @Test
+    void givenTrueFormWhenInputNegative0ThenOutput00000000000000000000000000000000() {
+        assertThat(singleIntegerStrategy.trueForm(-0))
+                .isEqualTo("10000000000000000000000000000000".toCharArray());
+    }
+
+    /*@Test
+    void givenOnesComplementWhenInput0ThenOutput00000000000000000000000000000000() {
+        assertThat(singleIntegerStrategy.trueForm(0))
+                .isEqualTo("00000000000000000000000000000000".toCharArray());
+    }*/
 }
