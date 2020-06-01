@@ -12,10 +12,10 @@ public abstract class AbstractStrategy<T extends Number> implements Strategy<T> 
     protected final char ONE = '1';
     protected int bits;
     protected char[] chars;
-    protected Map<Integer, Character> map = new HashMap<Integer, Character>() {{
-        put(1, ONE);
-        put(0, ZERO);
-        put(-1, ONE);
+    protected Map<Long, Character> map = new HashMap<Long, Character>() {{
+        put(1L, ONE);
+        put(0L, ZERO);
+        put(-1L, ONE);
     }};
 
 
