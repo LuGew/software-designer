@@ -5,6 +5,14 @@ package com.lugew.study.softwaredesigner.network.number;
  * @since 2020/6/1 22:40
  **/
 public abstract class AbstractBCD implements BCD {
+    @Override
+    public int toDecimal(char[] binary) {
+        ensureLegal(binary);
+        return 8 * valueOfIndex(binary, 0) +
+                4 * valueOfIndex(binary, 1) +
+                2 * valueOfIndex(binary, 2) +
+                valueOfIndex(binary, 3);
+    }
 
     protected void ensureLegal(char[] binary) {
         if (null == binary) {
