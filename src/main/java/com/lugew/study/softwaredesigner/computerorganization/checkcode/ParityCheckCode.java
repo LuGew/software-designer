@@ -21,6 +21,10 @@ public class ParityCheckCode extends AbstractCheckCode {
         this.method = method;
     }
 
+    public Method getMethod() {
+        return method;
+    }
+
     public void setEndian(Endian endian) {
         this.endian = endian;
     }
@@ -97,4 +101,6 @@ public class ParityCheckCode extends AbstractCheckCode {
         BIG,
         LITTLE
     }
+
+
 }
