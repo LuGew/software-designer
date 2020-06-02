@@ -3,7 +3,7 @@ package com.lugew.study.softwaredesigner.computerorganization.checkcode;
 import java.util.*;
 
 /**
- * n有效位，k校验位
+ * n有效位数，k校验位数
  * 需满足2^k-1>=n+k
  * 有
  * k    |   n
@@ -174,8 +174,9 @@ public class HammingCheckCode extends ParityCheckCode {
     @Override
     public boolean check(char[] checkCode) {
         ensureLegal(checkCode);
-        char[] checkResult = correct(checkCode);
-        return Arrays.equals(checkCode, checkResult);
+        char[] original = checkCode.clone();
+        char[] corrected = correct(checkCode);
+        return Arrays.equals(corrected, checkCode);
     }
 
     @Override
@@ -200,7 +201,23 @@ public class HammingCheckCode extends ParityCheckCode {
                 checkedResult[index] = ONE;
             }
         }
-        return checkedResult;
+        doCorrect(binary, checkedResult);
+        return binary;
+    }
+
+    private void doCorrect(char[] binary, char[] checkedResult) {
+        int wrongIndex = -1;
+        int index = checkedResult.length - 1;
+        for (char c : checkedResult) {
+            wrongIndex += (c - '0') << index--;
+        }
+        switchValue(binary, wrongIndex);
+    }
+
+    private void switchValue(char[] binary, int index) {
+        if (index >= 0 && index < binary.length) {
+            binary[index] = (binary[index] == ZERO ? ONE : ZERO);
+        }
     }
 
 }
