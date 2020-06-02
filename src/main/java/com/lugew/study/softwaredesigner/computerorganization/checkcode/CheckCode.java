@@ -13,4 +13,6 @@ public interface CheckCode {
     char[] generate(char[] binary);
 
     boolean check(char[] checkCode);
+
+    char[] correct(char[] binary);
 }

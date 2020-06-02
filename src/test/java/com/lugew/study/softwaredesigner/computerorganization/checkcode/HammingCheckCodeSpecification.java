@@ -139,9 +139,54 @@ class HammingCheckCodeSpecification {
 
     /*check*/
     @Test
-    void when000ThenTrue() {
-        checkCode.setMode(3);
+    void givenK2N1AndEvenWhen000ThenTrue() {
+        checkCode.setInformationBits(1);
         assertThat(checkCode.check("000".toCharArray()))
                 .isTrue();
     }
+
+    @Test
+    void givenK2N1AndEvenWhen010ThenFalse() {
+        checkCode.setInformationBits(1);
+        assertThat(checkCode.check("010".toCharArray()))
+                .isFalse();
+    }
+
+    @Test
+    void givenK2N1AndOddWhen110ThenTrue() {
+        checkCode.setInformationBits(1);
+        checkCode.enableOddMode();
+        assertThat(checkCode.check("110".toCharArray()))
+                .isTrue();
+    }
+
+    @Test
+    void givenK2N1AndOddWhen010ThenFalse() {
+        checkCode.setInformationBits(1);
+        checkCode.enableOddMode();
+        assertThat(checkCode.check("010".toCharArray()))
+                .isFalse();
+    }
+
+    @Test
+    void givenK4N7AndEvenWhen01110010101ThenTrue() {
+        checkCode.setInformationBits(7);
+        assertThat(checkCode.check("01110010101".toCharArray()))
+                .isTrue();
+    }
+
+    @Test
+    void givenK4N7AndEvenWhen01110000101ThenFalse() {
+        checkCode.setInformationBits(7);
+        assertThat(checkCode.check("01110000101".toCharArray()))
+                .isFalse();
+    }
+
+    @Test
+    void givenK4N7AndEvenWhen01110000101Then() {
+        checkCode.setInformationBits(7);
+        assertThat(checkCode.correct("01110000101".toCharArray()))
+                .isEqualTo("01110010101".toCharArray());
+    }
+
 }

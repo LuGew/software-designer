@@ -24,4 +24,13 @@ public abstract class AbstractCheckCode implements CheckCode {
     public boolean check(char[] checkCode) {
         return true;
     }
+
+    @Override
+    public char[] correct(char[] binary) {
+        return new char[0];
+    }
+
+
+
+
 }

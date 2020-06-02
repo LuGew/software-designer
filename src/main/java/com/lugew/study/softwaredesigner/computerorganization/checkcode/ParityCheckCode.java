@@ -92,6 +92,27 @@ public class ParityCheckCode extends AbstractCheckCode {
 
     }
 
+    protected boolean isChecked(int oneCount) {
+        return (isEven(oneCount) && isEvenMode()) || (isOdd(oneCount) && isOddMode());
+    }
+
+    protected boolean isEvenMode() {
+        return getMethod().equals(ParityCheckCode.Method.EVEN);
+    }
+
+    protected boolean isOddMode() {
+        return !isEvenMode();
+    }
+
+
+    protected boolean isOdd(int number) {
+        return !isEven(number);
+    }
+
+    protected boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+
     public enum Method {
         ODD,
         EVEN
@@ -101,6 +122,4 @@ public class ParityCheckCode extends AbstractCheckCode {
         BIG,
         LITTLE
     }
-
-
 }

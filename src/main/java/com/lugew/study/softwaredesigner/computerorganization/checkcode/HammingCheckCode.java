@@ -1,9 +1,6 @@
 package com.lugew.study.softwaredesigner.computerorganization.checkcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * n有效位，k校验位
@@ -74,9 +71,9 @@ public class HammingCheckCode extends ParityCheckCode {
 
     private void generateCheckPositions(int checkBits) {
         checkPositions = new int[checkBits];
-        checkPositionInformationPositionMap = new HashMap<>();
-        int index = 1;
-        for (int i = 0; i < checkBits; i++) {
+        checkPositionInformationPositionMap = new LinkedHashMap<>();
+        int index;
+        for (int i = checkBits - 1; i >= 0; i--) {
             index = 1 << i;
             checkPositionInformationPositionMap.put(index, new ArrayList<>());
             checkPositions[i] = index;
@@ -170,12 +167,40 @@ public class HammingCheckCode extends ParityCheckCode {
         setMethod(Method.EVEN);
     }
 
-    public void setMode(int informationBits) {
+    public void setInformationBits(int informationBits) {
         initialize(informationBits);
     }
 
     @Override
     public boolean check(char[] checkCode) {
-
+        ensureLegal(checkCode);
+        char[] checkResult = correct(checkCode);
+        return Arrays.equals(checkCode, checkResult);
     }
+
+    @Override
+    public char[] correct(char[] binary) {
+        ensureLegal(binary);
+        char[] checkedResult = new char[checkPositionInformationPositionMap.size()];
+        int index = -1;
+        for (Map.Entry<Integer, List<Integer>> entry : checkPositionInformationPositionMap.entrySet()) {
+            index++;
+            int oneCount = 0;
+            for (Integer informationIndex : entry.getValue()) {
+                if (binary[informationIndex] == ONE) {
+                    oneCount++;
+                }
+            }
+            if (binary[entry.getKey() - 1] == ONE) {
+                oneCount++;
+            }
+            if (isChecked(oneCount)) {
+                checkedResult[index] = ZERO;
+            } else {
+                checkedResult[index] = ONE;
+            }
+        }
+        return checkedResult;
+    }
+
 }
