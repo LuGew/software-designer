@@ -134,6 +134,10 @@ public class HammingCheckCode extends ParityCheckCode {
         return informationBits;
     }
 
+    public void setInformationBits(int informationBits) {
+        initialize(informationBits);
+    }
+
     public int getCheckBits() {
         return checkBits;
     }
@@ -167,16 +171,12 @@ public class HammingCheckCode extends ParityCheckCode {
         setMethod(Method.EVEN);
     }
 
-    public void setInformationBits(int informationBits) {
-        initialize(informationBits);
-    }
-
     @Override
     public boolean check(char[] checkCode) {
         ensureLegal(checkCode);
         char[] original = checkCode.clone();
         char[] corrected = correct(checkCode);
-        return Arrays.equals(corrected, checkCode);
+        return Arrays.equals(original, checkCode);
     }
 
     @Override
@@ -209,7 +209,7 @@ public class HammingCheckCode extends ParityCheckCode {
         int wrongIndex = -1;
         int index = checkedResult.length - 1;
         for (char c : checkedResult) {
-            wrongIndex += (c - '0') << index--;
+            wrongIndex += (c - ZERO) << index--;
         }
         switchValue(binary, wrongIndex);
     }
