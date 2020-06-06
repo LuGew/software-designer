@@ -29,6 +29,10 @@ public class ParityCheckCode extends AbstractCheckCode {
         this.endian = endian;
     }
 
+    public boolean isBigEndian() {
+        return this.endian.equals(Endian.BIG);
+    }
+
     @Override
     public char[] generate(char[] binary) {
         ensureLegal(binary);

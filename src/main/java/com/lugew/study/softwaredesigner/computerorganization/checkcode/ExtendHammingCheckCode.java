@@ -2,6 +2,7 @@ package com.lugew.study.softwaredesigner.computerorganization.checkcode;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
+import com.google.common.primitives.Chars;
 
 /**
  * 海明校验码只能检1位错，纠1位错
@@ -14,11 +15,13 @@ import com.google.common.collect.HashBiMap;
  * @since 2020/6/2
  */
 public class ExtendHammingCheckCode extends HammingCheckCode {
-    public static BiMap<Character, Integer> map = HashBiMap.create(2);
+    public BiMap<Character, Byte> map = HashBiMap.create(2);
     private Method extendMethod = Method.EVEN;
-    private Endian extendEndian = Endian.BIG;
 
     public ExtendHammingCheckCode() {
+        super();
+        this.map.put('0', (byte) 0b0);
+        this.map.put('1', (byte) 0b1);
     }
 
     public ExtendHammingCheckCode(int informationBits) {
@@ -33,33 +36,73 @@ public class ExtendHammingCheckCode extends HammingCheckCode {
         this.extendMethod = extendMethod;
     }
 
+    public void enableOddExtendMethod() {
+        setExtendMethod(Method.ODD);
+    }
+
+    public void enableLittleEndian() {
+        setEndian(Endian.LITTLE);
+    }
+
     @Override
     public char[] generate(char[] binary) {
         char[] result = super.generate(binary);
-        char p0 = getCheckCode(binary);
-        if (isExtendEndianBig()) {
-            return p0 + result;
+        char[] p0 = new char[]{
+                getCheckCode(binary)
+        };
+
+        if (isBigEndian()) {
+            return Chars.concat(p0, result);
         } else {
-            return result + p0;
+            return Chars.concat(result, p0);
         }
+    }
+
+
+    @Override
+    public boolean check(char[] checkCode) {
+        byte result = XOR(checkCode);
+
+        if (!isExtendMethodEven()) {
+            result ^= 1;
+        }
+        return result == 0;
+    }
+
+    @Override
+    public char[] correct(char[] binary) {
+        boolean e0 = validated(binary);
+//        if (e0) {
+//            super.check(Arrays.copyOfRange(binary,))
+//        }
+        return null;
     }
 
     private boolean isExtendMethodEven() {
         return Method.EVEN.equals(this.extendMethod);
     }
 
-    private boolean isExtendEndianBig() {
-        return Endian.BIG.equals(this.extendEndian);
+    private char getCheckCode(char[] binary) {
+        byte temp = XOR(binary);
+        if (!isExtendMethodEven()) {
+            temp ^= 0b1;
+        }
+        return map.inverse().get(temp);
     }
 
-    private char getCheckCode(char[] binary) {
-        int temp = 0;
+    private boolean validated(char[] binary) {
+        byte result = XOR(binary);
+        if (!isExtendMethodEven()) {
+            result ^= 0;
+        }
+        return result == 0;
+    }
+
+    private byte XOR(char[] binary) {
+        byte temp = 0;
         for (char c : binary) {
             temp ^= map.get(c);
         }
-        if (!isExtendMethodEven()) {
-            temp ^= 1;
-        }
-        return map.inverse().get(temp);
+        return temp;
     }
 }
