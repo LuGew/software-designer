@@ -14,15 +14,84 @@ package com.lugew.study.softwaredesigner.computerorganization.checkcode;
  * @since 2020/6/2
  */
 public class ParityCheckCode extends AbstractCheckCode {
-    private Method method = Method.EVEN;
+    private CheckMethod checkMethod = CheckMethod.EVEN;
     private Endian endian = Endian.BIG;
 
-    public void setMethod(Method method) {
-        this.method = method;
+    @Override
+    public char[] generate(char[] binary) {
+        ensureLegal(binary);
+        int length = binary.length;
+        int copyIndexOfResult = 1;
+        int checkIndex = 0;
+        char[] result = new char[length + 1];
+        if (isLittleEndian()) {
+            copyIndexOfResult = 0;
+            checkIndex = length;
+        }
+        System.arraycopy(binary, 0, result, copyIndexOfResult, length);
+        result[checkIndex] = generateParityCheckCode(binary);
+        return result;
     }
 
-    public Method getMethod() {
-        return method;
+    @Override
+    public boolean check(char[] binary) {
+        ensureLegal(binary);
+        return isParityPass(xor(binary));
+    }
+
+    /**
+     * 异或
+     *
+     * @param binary 输入字符串
+     * @return 异或结果
+     */
+    protected byte xor(char[] binary) {
+        byte temp = 0;
+        for (char c : binary) {
+            temp ^= map.get(c);
+        }
+        return temp;
+    }
+
+    protected byte not(byte input) {
+        input ^= 1;
+        return input;
+    }
+
+    protected char generateParityCheckCode(char[] binary) {
+        byte XORResult = xor(binary);
+        if (isOddCheck()) {
+            XORResult = not(XORResult);
+        }
+        return map.inverse().get(XORResult);
+    }
+
+    protected boolean isEvenCheck() {
+        return getCheckMethod().equals(CheckMethod.EVEN);
+    }
+
+    protected boolean isOddCheck() {
+        return !isEvenCheck();
+    }
+
+    protected boolean isParityPass(byte xorResult) {
+        return (isEvenCheck() && xorResult == 0) || (isOddCheck() && xorResult == 1);
+    }
+
+    protected boolean isOddNumber(int number) {
+        return !isEvenNumber(number);
+    }
+
+    protected boolean isEvenNumber(int number) {
+        return number % 2 == 0;
+    }
+
+    public CheckMethod getCheckMethod() {
+        return checkMethod;
+    }
+
+    public void setCheckMethod(CheckMethod checkMethod) {
+        this.checkMethod = checkMethod;
     }
 
     public void setEndian(Endian endian) {
@@ -33,91 +102,12 @@ public class ParityCheckCode extends AbstractCheckCode {
         return this.endian.equals(Endian.BIG);
     }
 
-    @Override
-    public char[] generate(char[] binary) {
-        ensureLegal(binary);
-        int code = 0;
-        char[] result = new char[binary.length + 1];
-        if (this.endian.equals(Endian.LITTLE)) {
-            for (int i = 0; i < binary.length; i++) {
-                char temp = binary[i];
-                result[i] = temp;
-                if (temp == ONE) {
-                    code++;
-                } else if (temp == ZERO) {
-
-                } else {
-                    throw new RuntimeException("input not binary");
-                }
-            }
-            result[binary.length] = code % 2 == 0 ? ZERO : ONE;
-            if (this.method.equals(Method.ODD)) {
-                result[binary.length] = result[binary.length] == ZERO ? ONE : ZERO;
-            }
-        } else {
-
-            for (int i = binary.length - 1; i >= 0; i--) {
-                char temp = binary[i];
-                result[i + 1] = temp;
-                if (temp == ONE) {
-                    code++;
-                } else if (temp == ZERO) {
-
-                } else {
-                    throw new RuntimeException("input not binary");
-                }
-            }
-            result[0] = code % 2 == 0 ? ZERO : ONE;
-            if (this.method.equals(Method.ODD)) {
-                result[0] = result[0] == ZERO ? ONE : ZERO;
-            }
-        }
-        return result;
-    }
-
-    @Override
-    public boolean check(char[] checkCode) {
-        ensureLegal(checkCode);
-        int code = 0;
-        for (char temp : checkCode) {
-            if (temp == ONE) {
-                code++;
-            } else if (temp == ZERO) {
-
-            } else {
-                throw new RuntimeException("input not binary");
-            }
-        }
-        if (this.method.equals(Method.EVEN)) {
-            return 0 == code % 2;
-        } else {
-            return 1 == code % 2;
-        }
-
-    }
-
-    protected boolean isChecked(int oneCount) {
-        return (isEven(oneCount) && isEvenMode()) || (isOdd(oneCount) && isOddMode());
-    }
-
-    protected boolean isEvenMode() {
-        return getMethod().equals(ParityCheckCode.Method.EVEN);
-    }
-
-    protected boolean isOddMode() {
-        return !isEvenMode();
+    public boolean isLittleEndian() {
+        return !isBigEndian();
     }
 
 
-    protected boolean isOdd(int number) {
-        return !isEven(number);
-    }
-
-    protected boolean isEven(int number) {
-        return number % 2 == 0;
-    }
-
-    public enum Method {
+    public enum CheckMethod {
         ODD,
         EVEN
     }

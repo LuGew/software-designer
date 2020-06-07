@@ -121,7 +121,7 @@ public class HammingCheckCode extends ParityCheckCode {
         for (int checkPosition : checkPositions) {
             index = checkPosition;
             List<Integer> informationPositions = checkPositionInformationPositionMap.get(index);
-            result[index - 1] = calculateParityCheckCode(informationPositions, result);
+            result[index - 1] = generateParityCheckCode(informationPositions, result);
         }
     }
 
@@ -142,33 +142,12 @@ public class HammingCheckCode extends ParityCheckCode {
         return checkBits;
     }
 
-    protected char calculateParityCheckCode(List<Integer> informationPositions, char[] result) {
-        int oneCount = 0;
-        char code;
-        char information;
-        for (Integer position : informationPositions) {
-            information = result[position];
-            if (information == ONE) {
-                oneCount++;
-            } else if (information == ZERO) {
-
-            } else {
-                throw new RuntimeException("input not binary");
-            }
-        }
-        code = oneCount % 2 == 0 ? ZERO : ONE;
-        if (this.getMethod().equals(Method.ODD)) {
-            code = code == ZERO ? ONE : ZERO;
-        }
-        return code;
-    }
-
     public void enableOddMode() {
-        setMethod(Method.ODD);
+        setCheckMethod(CheckMethod.ODD);
     }
 
     public void enableEvenMode() {
-        setMethod(Method.EVEN);
+        setCheckMethod(CheckMethod.EVEN);
     }
 
     @Override
@@ -186,16 +165,7 @@ public class HammingCheckCode extends ParityCheckCode {
         int index = -1;
         for (Map.Entry<Integer, List<Integer>> entry : checkPositionInformationPositionMap.entrySet()) {
             index++;
-            int oneCount = 0;
-            for (Integer informationIndex : entry.getValue()) {
-                if (binary[informationIndex] == ONE) {
-                    oneCount++;
-                }
-            }
-            if (binary[entry.getKey() - 1] == ONE) {
-                oneCount++;
-            }
-            if (isChecked(oneCount)) {
+            if (isParityPass(xor(xor(entry.getValue(), binary), map.get(binary[entry.getKey() - 1])))) {
                 checkedResult[index] = ZERO;
             } else {
                 checkedResult[index] = ONE;
@@ -209,15 +179,37 @@ public class HammingCheckCode extends ParityCheckCode {
         int wrongIndex = -1;
         int index = checkedResult.length - 1;
         for (char c : checkedResult) {
-            wrongIndex += (c - ZERO) << index--;
+            wrongIndex += map.get(c) << index--;
         }
-        switchValue(binary, wrongIndex);
+        not(binary, wrongIndex);
     }
 
-    private void switchValue(char[] binary, int index) {
-        if (index >= 0 && index < binary.length) {
-            binary[index] = (binary[index] == ZERO ? ONE : ZERO);
+    private byte xor(List<Integer> indexes, char[] binary) {
+        byte result = 0;
+        for (Integer index : indexes) {
+            result ^= binary[index];
         }
+        return result;
+    }
+
+    private byte xor(byte c1, byte c2) {
+        return (byte) (c1 ^ c2);
+    }
+
+    private char generateParityCheckCode(List<Integer> indexes, char[] binary) {
+        byte XORResult = xor(indexes, binary);
+        if (isOddCheck()) {
+            XORResult ^= 1;
+        }
+        return map.inverse().get(XORResult);
+    }
+
+    protected char not(char input) {
+        return map.inverse().get((byte) (map.get(input) ^ 0b1));
+    }
+
+    protected void not(char[] binary, int index) {
+        binary[index] = not(binary[index]);
     }
 
 }

@@ -24,7 +24,7 @@ class ParityCheckCodeSpecification {
     }
 
     private void setOdd() {
-        checkCode.setMethod(ParityCheckCode.Method.ODD);
+        checkCode.setCheckMethod(ParityCheckCode.CheckMethod.ODD);
 
     }
 

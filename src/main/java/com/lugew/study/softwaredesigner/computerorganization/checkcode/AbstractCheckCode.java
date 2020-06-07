@@ -11,6 +11,11 @@ public abstract class AbstractCheckCode implements CheckCode {
         if (null == binary) {
             throw new RuntimeException("input is null");
         }
+        for (char temp : binary) {
+            if (map.get(temp) == null) {
+                throw new RuntimeException("input not binary");
+            }
+        }
 
     }
 
@@ -21,7 +26,7 @@ public abstract class AbstractCheckCode implements CheckCode {
     }
 
     @Override
-    public boolean check(char[] checkCode) {
+    public boolean check(char[] binary) {
         return true;
     }
 
@@ -29,8 +34,6 @@ public abstract class AbstractCheckCode implements CheckCode {
     public char[] correct(char[] binary) {
         return new char[0];
     }
-
-
 
 
 }

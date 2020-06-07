@@ -16,7 +16,7 @@ import com.google.common.primitives.Chars;
  */
 public class ExtendHammingCheckCode extends HammingCheckCode {
     public BiMap<Character, Byte> map = HashBiMap.create(2);
-    private Method extendMethod = Method.EVEN;
+    private CheckMethod extendCheckMethod = CheckMethod.EVEN;
 
     public ExtendHammingCheckCode() {
         super();
@@ -28,16 +28,16 @@ public class ExtendHammingCheckCode extends HammingCheckCode {
         super(informationBits);
     }
 
-    public Method getExtendMethod() {
-        return extendMethod;
+    public CheckMethod getExtendCheckMethod() {
+        return extendCheckMethod;
     }
 
-    public void setExtendMethod(Method extendMethod) {
-        this.extendMethod = extendMethod;
+    public void setExtendCheckMethod(CheckMethod extendCheckMethod) {
+        this.extendCheckMethod = extendCheckMethod;
     }
 
     public void enableOddExtendMethod() {
-        setExtendMethod(Method.ODD);
+        setExtendCheckMethod(CheckMethod.ODD);
     }
 
     public void enableLittleEndian() {
@@ -79,7 +79,7 @@ public class ExtendHammingCheckCode extends HammingCheckCode {
     }
 
     private boolean isExtendMethodEven() {
-        return Method.EVEN.equals(this.extendMethod);
+        return CheckMethod.EVEN.equals(this.extendCheckMethod);
     }
 
     private char getCheckCode(char[] binary) {
