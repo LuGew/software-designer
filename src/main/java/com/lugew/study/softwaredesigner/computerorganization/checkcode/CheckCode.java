@@ -20,9 +20,27 @@ public interface CheckCode {
     }});
 
 
+    /**
+     * 由源数据生成校验码
+     *
+     * @param binary 原始二进制数据
+     * @return 根据规则生成的校验码
+     */
     char[] generate(char[] binary);
 
+    /**
+     * 校验校验码是否通过
+     *
+     * @param binary 校验码
+     * @return 是否通过
+     */
     boolean check(char[] binary);
 
+    /**
+     * 纠错
+     *
+     * @param binary 校验码
+     * @return 纠错之后的校验码
+     */
     char[] correct(char[] binary);
 }

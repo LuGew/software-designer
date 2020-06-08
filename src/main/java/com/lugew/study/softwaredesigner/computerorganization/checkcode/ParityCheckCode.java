@@ -14,7 +14,13 @@ package com.lugew.study.softwaredesigner.computerorganization.checkcode;
  * @since 2020/6/2
  */
 public class ParityCheckCode extends AbstractCheckCode {
+    /**
+     * 校验方式
+     */
     private CheckMethod checkMethod = CheckMethod.EVEN;
+    /**
+     * 大端或者小端
+     */
     private Endian endian = Endian.BIG;
 
     @Override
@@ -40,12 +46,6 @@ public class ParityCheckCode extends AbstractCheckCode {
     }
 
 
-    /**
-     * 异或
-     *
-     * @param binary 输入字符串
-     * @return 异或结果
-     */
     protected byte xor(char[] binary) {
         byte temp = 0;
         for (char c : binary) {
@@ -59,6 +59,12 @@ public class ParityCheckCode extends AbstractCheckCode {
         return input;
     }
 
+    /**
+     * 根据源二进制数据生成P
+     *
+     * @param binary 源二进制数据
+     * @return P
+     */
     protected char generateParityCheckCode(char[] binary) {
         byte xorResult = xor(binary);
         if (isOddCheck()) {
@@ -67,17 +73,26 @@ public class ParityCheckCode extends AbstractCheckCode {
         return map.inverse().get(xorResult);
     }
 
+
     protected boolean isEvenCheck() {
         return getCheckMethod().equals(CheckMethod.EVEN);
     }
+
 
     protected boolean isOddCheck() {
         return !isEvenCheck();
     }
 
+    /**
+     * E校验通过
+     *
+     * @param xorResult 异或值
+     * @return 结果
+     */
     protected boolean isParityPass(byte xorResult) {
         return (isEvenCheck() && xorResult == 0) || (isOddCheck() && xorResult == 1);
     }
+
     public CheckMethod getCheckMethod() {
         return checkMethod;
     }
