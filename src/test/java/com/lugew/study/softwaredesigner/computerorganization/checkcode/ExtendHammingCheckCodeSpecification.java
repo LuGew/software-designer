@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * @author LuGew
@@ -51,7 +52,61 @@ class ExtendHammingCheckCodeSpecification {
 
     @Test
     void whenE0ErrorOf101110010101Then001110010101() {
+        checkCode.setInformationBits(7);
         assertThat(checkCode.correct("101110010101".toCharArray()))
                 .isEqualTo("001110010101".toCharArray());
+    }
+
+    @Test
+    void whenE0ErrorAndOtherErrorOf101010010101Then001110010101() {
+        checkCode.setInformationBits(7);
+        assertThatThrownBy(() -> {
+            checkCode.correct("101010010101".toCharArray());
+        }).isInstanceOf(RuntimeException.class)
+                .hasMessage("2 bits error");
+    }
+
+    @Test
+    void whenE0NotErrorAndOtherHas2ErrorOf001110010101ThenException() {
+        checkCode.setInformationBits(7);
+        assertThatThrownBy(() -> {
+            checkCode.correct("000010010101".toCharArray());
+        }).isInstanceOf(RuntimeException.class)
+                .hasMessage("2 bits error");
+    }
+
+    @Test
+    void whenE0NotErrorAndOtherNotErrorOf001110010101Then001110010101() {
+        checkCode.setInformationBits(7);
+        assertThat(checkCode.correct("001110010101".toCharArray()))
+                .isEqualTo("001110010101".toCharArray());
+    }
+
+    @Test
+    void whenE0ErrorAndOtherNotErrorOf101110010101Then001110010101() {
+        checkCode.setInformationBits(7);
+        assertThat(checkCode.correct("101110010101".toCharArray()))
+                .isEqualTo("001110010101".toCharArray());
+    }
+
+    @Test
+    void whenE0NotErrorAndOtherHasErrorOf001010010101Then001110010101() {
+        checkCode.setInformationBits(7);
+        assertThat(checkCode.correct("001010010101".toCharArray()))
+                .isEqualTo("001110010101".toCharArray());
+    }
+
+    @Test
+    void whenEvenThenEven() {
+        checkCode.enableOddExtendMethod();
+        assertThat(checkCode.getExtendCheckMethod())
+                .isEqualTo(ParityCheckCode.CheckMethod.ODD);
+    }
+
+    @Test
+    void whenHas7InformationThen7Information() {
+        checkCode = new ExtendHammingCheckCode(7);
+        assertThat(checkCode.getInformationBits())
+                .isEqualTo(7);
     }
 }

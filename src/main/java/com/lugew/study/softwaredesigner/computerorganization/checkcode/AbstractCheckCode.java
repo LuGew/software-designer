@@ -21,18 +21,17 @@ public abstract class AbstractCheckCode implements CheckCode {
 
     @Override
     public char[] generate(char[] binary) {
-        ensureLegal(binary);
-        return null;
+        throw new RuntimeException("need to be implemented");
     }
 
     @Override
     public boolean check(char[] binary) {
-        return true;
+        throw new RuntimeException("need to be implemented");
     }
 
     @Override
     public char[] correct(char[] binary) {
-        return new char[0];
+        throw new RuntimeException("need to be implemented");
     }
 
 

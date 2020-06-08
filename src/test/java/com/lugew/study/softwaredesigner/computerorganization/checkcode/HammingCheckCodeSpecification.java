@@ -189,4 +189,17 @@ class HammingCheckCodeSpecification {
                 .isEqualTo("01110010101".toCharArray());
     }
 
+    @Test
+    void whenHas7InformationThen7Information() {
+        checkCode = new HammingCheckCode(7);
+        assertThat(checkCode.getInformationBits())
+                .isEqualTo(7);
+    }
+
+    @Test
+    void whenEvenThenEven() {
+        checkCode.enableEvenMode();
+        assertThat(checkCode.getCheckMethod())
+                .isEqualTo(ParityCheckCode.CheckMethod.EVEN);
+    }
 }

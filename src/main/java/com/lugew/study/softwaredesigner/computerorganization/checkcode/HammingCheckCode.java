@@ -151,16 +151,14 @@ public class HammingCheckCode extends ParityCheckCode {
     }
 
     @Override
-    public boolean check(char[] checkCode) {
-        ensureLegal(checkCode);
-        char[] original = checkCode.clone();
-        char[] corrected = correct(checkCode);
-        return Arrays.equals(original, checkCode);
+    public boolean check(char[] binary) {
+        ensureLegal(binary);
+        char[] original = binary.clone();
+        correct(binary);
+        return Arrays.equals(original, binary);
     }
 
-    @Override
-    public char[] correct(char[] binary) {
-        ensureLegal(binary);
+    protected char[] getBinaryErrorPosition(char[] binary) {
         char[] checkedResult = new char[checkPositionInformationPositionMap.size()];
         int index = -1;
         for (Map.Entry<Integer, List<Integer>> entry : checkPositionInformationPositionMap.entrySet()) {
@@ -171,23 +169,46 @@ public class HammingCheckCode extends ParityCheckCode {
                 checkedResult[index] = ONE;
             }
         }
-        doCorrect(binary, checkedResult);
+        return checkedResult;
+    }
+
+    protected int getDecimalErrorPosition(char[] binary) {
+        int wrongIndex = -1;
+        int index = binary.length - 1;
+        for (char c : binary) {
+            wrongIndex += map.get(c) << index--;
+        }
+        return wrongIndex;
+    }
+
+    @Override
+    public char[] correct(char[] binary) {
+        ensureLegal(binary);
+        int errorIndex = getErrorPosition(binary);
+        if (hasError(errorIndex)) {
+            not(binary, errorIndex);
+        }
         return binary;
     }
 
-    private void doCorrect(char[] binary, char[] checkedResult) {
-        int wrongIndex = -1;
-        int index = checkedResult.length - 1;
-        for (char c : checkedResult) {
-            wrongIndex += map.get(c) << index--;
-        }
-        not(binary, wrongIndex);
+    protected boolean hasError(int errorIndex) {
+        return errorIndex >= 0;
     }
+
+/*    protected boolean notHasError(int errorIndex) {
+        return !hasError(errorIndex);
+    }*/
+
+    protected int getErrorPosition(char[] binary) {
+        char[] errorPosition = getBinaryErrorPosition(binary);
+        return getDecimalErrorPosition(errorPosition);
+    }
+
 
     private byte xor(List<Integer> indexes, char[] binary) {
         byte result = 0;
         for (Integer index : indexes) {
-            result ^= binary[index];
+            result ^= map.get(binary[index]);
         }
         return result;
     }

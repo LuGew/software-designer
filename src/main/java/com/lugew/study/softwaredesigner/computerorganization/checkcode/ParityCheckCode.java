@@ -39,6 +39,7 @@ public class ParityCheckCode extends AbstractCheckCode {
         return isParityPass(xor(binary));
     }
 
+
     /**
      * 异或
      *
@@ -59,11 +60,11 @@ public class ParityCheckCode extends AbstractCheckCode {
     }
 
     protected char generateParityCheckCode(char[] binary) {
-        byte XORResult = xor(binary);
+        byte xorResult = xor(binary);
         if (isOddCheck()) {
-            XORResult = not(XORResult);
+            xorResult = not(xorResult);
         }
-        return map.inverse().get(XORResult);
+        return map.inverse().get(xorResult);
     }
 
     protected boolean isEvenCheck() {
@@ -77,15 +78,6 @@ public class ParityCheckCode extends AbstractCheckCode {
     protected boolean isParityPass(byte xorResult) {
         return (isEvenCheck() && xorResult == 0) || (isOddCheck() && xorResult == 1);
     }
-
-    protected boolean isOddNumber(int number) {
-        return !isEvenNumber(number);
-    }
-
-    protected boolean isEvenNumber(int number) {
-        return number % 2 == 0;
-    }
-
     public CheckMethod getCheckMethod() {
         return checkMethod;
     }
