@@ -1,22 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://lugew.github.io/software-designer</id>
-    <title>software-designer</title>
-    <updated>2020-06-08T15:13:26.343Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://lugew.github.io/software-designer"/>
-    <link rel="self" href="https://lugew.github.io/software-designer/atom.xml"/>
-    <subtitle>java代码抽象&amp;实现《软件-软件设计师》知识点</subtitle>
-    <logo>https://lugew.github.io/software-designer/images/avatar.png</logo>
-    <icon>https://lugew.github.io/software-designer/favicon.ico</icon>
-    <rights>All rights reserved 2020, software-designer</rights>
-    <entry>
-        <title type="html"><![CDATA[海明校验码（hamming check code）]]></title>
-        <id>https://lugew.github.io/software-designer/post/hamming-check-code/</id>
-        <link href="https://lugew.github.io/software-designer/post/hamming-check-code/">
-        </link>
-        <updated>2020-06-08T13:08:12.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="概述">😀概述</h1>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>海明校验码（hamming check code） | software-designer</title>
+<link rel="shortcut icon" href="https://lugew.github.io/software-designer/favicon.ico?v=1591629133674">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://lugew.github.io/software-designer/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="海明校验码（hamming check code） | software-designer - Atom Feed" href="https://lugew.github.io/software-designer/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="😀概述
+在奇偶校验基础上增加校验位、增大码距，就能提高纠错能力。海明码在奇偶校验的基础上，增加校验位，构成多组奇偶校验。
+😄校验位数目
+n为信息位数，k为校验位数，n、k满足如下条件：
+
+2k−1⩾n+k2^k-1\geqslant n..." />
+    <meta name="keywords" content="hamming-check-code,海明校验码,computer-organization,计算机组成原理,奇偶校验码,partity-check-code" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://lugew.github.io/software-designer">
+  <img class="avatar" src="https://lugew.github.io/software-designer/images/avatar.png?v=1591629133674" alt="">
+  </a>
+  <h1 class="site-title">
+    software-designer
+  </h1>
+  <p class="site-description">
+    java代码抽象&实现《软件-软件设计师》知识点
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/software-designer/" class="menu" target="_blank">
+          首页
+        </a>
+      
+    
+      
+        <a href="/software-designer/archives" class="menu" target="_blank">
+          归档
+        </a>
+      
+    
+      
+        <a href="/software-designer/tags" class="menu" target="_blank">
+          标签
+        </a>
+      
+    
+      
+        <a href="/software-designer/post/about" class="menu" target="_blank">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              海明校验码（hamming check code）
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-06-08
+              </span>
+              <span>
+                13 min read
+              </span>
+              
+                <a href="https://lugew.github.io/software-designer/tag/65MtYLF6x/" class="post-tag">
+                  # hamming-check-code
+                </a>
+              
+                <a href="https://lugew.github.io/software-designer/tag/F_H1WA4NXl/" class="post-tag">
+                  # 海明校验码
+                </a>
+              
+                <a href="https://lugew.github.io/software-designer/tag/computer-organization/" class="post-tag">
+                  # computer-organization
+                </a>
+              
+                <a href="https://lugew.github.io/software-designer/tag/WfkfTd80H/" class="post-tag">
+                  # 计算机组成原理
+                </a>
+              
+                <a href="https://lugew.github.io/software-designer/tag/PONugnRqs/" class="post-tag">
+                  # 奇偶校验码
+                </a>
+              
+                <a href="https://lugew.github.io/software-designer/tag/xMw_1IoKzt/" class="post-tag">
+                  # partity-check-code
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h1 id="概述">😀概述</h1>
 <p>在奇偶校验基础上增加校验位、增大码距，就能提高纠错能力。海明码在奇偶校验的基础上，增加校验位，构成多组奇偶校验。</p>
 <h1 id="校验位数目">😄校验位数目</h1>
 <p><code>n</code>为信息位数，<code>k</code>为校验位数，<code>n、k</code>满足如下条件：</p>
@@ -493,284 +594,103 @@ public class ExtendHammingCheckCode extends HammingCheckCode {
 </code></pre>
 <h1 id="测试">🍅测试</h1>
 <p>详情见<code>HammingCheckCodeSpecification.java</code>、<code>ExtendHammingCheckCodeSpecification.java</code></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[奇偶校验码（parity-check-code）]]></title>
-        <id>https://lugew.github.io/software-designer/post/parity-check-code/</id>
-        <link href="https://lugew.github.io/software-designer/post/parity-check-code/">
-        </link>
-        <updated>2020-06-08T08:12:36.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="序">🍎 序</h1>
-<ol>
-<li>最简单、最常用的校验码</li>
-<li>分为奇校验、偶校验</li>
-<li>校验位可在最低位/最高位</li>
-</ol>
-<h1 id="原理">🍏原理</h1>
-<h2 id="编码方式">🍐编码方式</h2>
-<blockquote>
-<p>奇（odd）：使1的个数为奇数<br>
-偶（even）：使1的个数为偶数</p>
-</blockquote>
-<p>假设<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub><msub><mi>A</mi><mn>1</mn></msub><msub><mi>A</mi><mn>2</mn></msub><msub><mi>A</mi><mn>3</mn></msub><msub><mi>A</mi><mn>4</mn></msub><msub><mi>A</mi><mn>5</mn></msub><msub><mi>A</mi><mn>6</mn></msub><msub><mi>A</mi><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">A_0A_1A_2A_3A_4A_5A_6A_7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>为8位有效位，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">A_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>最高位，加一位P校验位构成9位奇偶校验码。<br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><msub><mi>A</mi><mn>0</mn></msub><msub><mi>A</mi><mn>1</mn></msub><msub><mi>A</mi><mn>2</mn></msub><msub><mi>A</mi><mn>3</mn></msub><msub><mi>A</mi><mn>4</mn></msub><msub><mi>A</mi><mn>5</mn></msub><msub><mi>A</mi><mn>6</mn></msub><msub><mi>A</mi><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">PA_0A_1A_2A_3A_4A_5A_6A_7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>或者<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>A</mi><mn>0</mn></msub><msub><mi>A</mi><mn>1</mn></msub><msub><mi>A</mi><mn>2</mn></msub><msub><mi>A</mi><mn>3</mn></msub><msub><mi>A</mi><mn>4</mn></msub><msub><mi>A</mi><mn>5</mn></msub><msub><mi>A</mi><mn>6</mn></msub><msub><mi>A</mi><mn>7</mn></msub><mi>P</mi></mrow><annotation encoding="application/x-tex">A_0A_1A_2A_3A_4A_5A_6A_7P</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span></span><br>
-偶校验：</p>
-<blockquote>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mrow><mi>e</mi><mi>v</mi><mi>e</mi><mi>n</mi></mrow></msub><mo>=</mo><msub><mi>A</mi><mn>0</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>2</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>3</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>4</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>5</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>6</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>7</mn></msub></mrow><annotation encoding="application/x-tex">P_{even}=A_0\oplus A_1\oplus A_2\oplus A_3\oplus A_4\oplus A_5\oplus A_6\oplus A_7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span>：异或运算</p>
-</blockquote>
-<p>奇校验：</p>
-<blockquote>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>P</mi><mrow><mi>o</mi><mi>d</mi><mi>d</mi></mrow></msub><mo>=</mo><msub><mover accent="true"><mi>P</mi><mo stretchy="true">‾</mo></mover><mrow><mi>e</mi><mi>v</mi><mi>e</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P_{odd}=\overline{P}_{even}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.03333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
-</blockquote>
-<h2 id="校验">🍊校验</h2>
-<p>校验标志<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">E=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>时无错<br>
-偶校验：</p>
-<blockquote>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><msub><mi>A</mi><mn>0</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>2</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>3</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>4</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>5</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>6</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>7</mn></msub><mo>⊕</mo><msub><mi>P</mi><mrow><mi>e</mi><mi>v</mi><mi>e</mi><mi>n</mi></mrow></msub></mrow><annotation encoding="application/x-tex">E=A_0\oplus A_1\oplus A_2\oplus A_3\oplus A_4\oplus A_5\oplus A_6\oplus A_7\oplus P_{even}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p>
-</blockquote>
-<p>奇校验：</p>
-<blockquote>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mover accent="true"><mrow><msub><mi>A</mi><mn>0</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>1</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>2</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>3</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>4</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>5</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>6</mn></msub><mo>⊕</mo><msub><mi>A</mi><mn>7</mn></msub><mo>⊕</mo><msub><mi>P</mi><mrow><mi>o</mi><mi>d</mi><mi>d</mi></mrow></msub></mrow><mo stretchy="true">‾</mo></mover></mrow><annotation encoding="application/x-tex">E=\overline{A_0\oplus A_1\oplus A_2\oplus A_3\oplus A_4\oplus A_5\oplus A_6\oplus A_7\oplus P_{odd}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.03333em;vertical-align:-0.15em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8833300000000001em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">7</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⊕</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">d</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.80333em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></p>
-</blockquote>
-<h2 id="校错能力">🍋校错能力</h2>
-<ol>
-<li>只能发现一位错/奇数错，即使发现也不能纠错</li>
-<li>无法发现偶数错</li>
-</ol>
-<h2 id="用途">🍌用途</h2>
-<p>CPU与主存信息传输</p>
-<h1 id="抽象实现">🍉抽象&amp;实现</h1>
-<h2 id="校验码接口">🐶校验码接口</h2>
-<pre><code>package com.lugew.study.softwaredesigner.computerorganization.checkcode;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%A6%82%E8%BF%B0">😀概述</a></li>
+<li><a href="#%E6%A0%A1%E9%AA%8C%E4%BD%8D%E6%95%B0%E7%9B%AE">😄校验位数目</a></li>
+<li><a href="#%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F">😃编码方式</a>
+<ul>
+<li><a href="#%E4%BE%8B">😆例</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A0%A1%E9%AA%8C">😅校验</a>
+<ul>
+<li><a href="#%E4%BE%8B-2">🍓例</a></li>
+</ul>
+</li>
+<li><a href="#%E6%89%A9%E5%B1%95%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C%E7%A0%81">🍑扩展海明校验码</a>
+<ul>
+<li><a href="#%E7%BB%93%E6%9E%9C%E5%88%A4%E6%96%AD">🥑结果判断</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8A%BD%E8%B1%A1%E5%AE%9E%E7%8E%B0">🍇抽象&amp;实现</a>
+<ul>
+<li><a href="#%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C%E7%A0%81">🥝海明校验码</a></li>
+<li><a href="#%E6%89%A9%E5%B1%95%E6%B5%B7%E6%98%8E%E6%A0%A1%E9%AA%8C%E7%A0%81-2">🥕扩展海明校验码</a></li>
+</ul>
+</li>
+<li><a href="#%E6%B5%8B%E8%AF%95">🍅测试</a></li>
+</ul>
 
-import java.util.HashMap;
+              </div>
+            </div>
+          </article>
+        </div>
 
-/**
- * 校验码
- *
- * @author LuGew
- * @since 2020/6/2
- */
-public interface CheckCode {
-    char ONE = '1';
-    char ZERO = '0';
-    BiMap&lt;Character, Byte&gt; map = HashBiMap.create(new HashMap&lt;Character, Byte&gt;() {{
-        put('1', (byte) 1);
-        put('0', (byte) 0);
-    }});
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://lugew.github.io/software-designer/post/parity-check-code/">
+              <h3 class="post-title">
+                奇偶校验码（parity-check-code）
+              </h3>
+            </a>
+          </div>
+        
 
+        
 
-    /**
-     * 由源数据生成校验码
-     *
-     * @param binary 原始二进制数据
-     * @return 根据规则生成的校验码
-     */
-    char[] generate(char[] binary);
+        <div class="site-footer">
+  Powered by <a href="https://github.com/LuGew" target="_blank">LuGew</a>
+  <a class="rss" href="https://lugew.github.io/software-designer/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
 
-    /**
-     * 校验校验码是否通过
-     *
-     * @param binary 校验码
-     * @return 是否通过
-     */
-    boolean check(char[] binary);
+      </div>
+    </div>
 
-    /**
-     * 纠错
-     *
-     * @param binary 校验码
-     * @return 纠错之后的校验码
-     */
-    char[] correct(char[] binary);
-}
+    <script>
+      hljs.initHighlightingOnLoad()
 
-</code></pre>
-<h2 id="抽象校验码">🐱抽象校验码</h2>
-<pre><code>package com.lugew.study.softwaredesigner.computerorganization.checkcode;
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
 
-/**
- * 抽象校验码
- *
- * @author LuGew
- * @since 2020/6/2
- */
-public abstract class AbstractCheckCode implements CheckCode {
-    protected void ensureLegal(char[] binary) {
-        if (null == binary) {
-            throw new RuntimeException(&quot;input is null&quot;);
-        }
-        for (char temp : binary) {
-            if (map.get(temp) == null) {
-                throw new RuntimeException(&quot;input not binary&quot;);
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
             }
-        }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
 
-    }
-
-    @Override
-    public char[] generate(char[] binary) {
-        throw new RuntimeException(&quot;need to be implemented&quot;);
-    }
-
-    @Override
-    public boolean check(char[] binary) {
-        throw new RuntimeException(&quot;need to be implemented&quot;);
-    }
-
-    @Override
-    public char[] correct(char[] binary) {
-        throw new RuntimeException(&quot;need to be implemented&quot;);
-    }
-
-
-}
-
-</code></pre>
-<h2 id="奇偶校验码">🐹奇偶校验码</h2>
-<pre><code>package com.lugew.study.softwaredesigner.computerorganization.checkcode;
-
-/**
- * 奇偶校验码
- * 奇偶校验只能发现一位或者奇数位错，无法发现偶数位错，即使发现错误也无法纠错
- * 一位出错的概率高，能够满足一般可靠性要求，
- * 在
- * {@link com.lugew.study.softwaredesigner.network.CPU}
- * 与
- * {@link com.lugew.study.softwaredesigner.network.Memory}
- * 的信息传输中广泛应用
- *
- * @author LuGew
- * @since 2020/6/2
- */
-public class ParityCheckCode extends AbstractCheckCode {
-    /**
-     * 校验方式
-     */
-    private CheckMethod checkMethod = CheckMethod.EVEN;
-    /**
-     * 大端或者小端
-     */
-    private Endian endian = Endian.BIG;
-
-    @Override
-    public char[] generate(char[] binary) {
-        ensureLegal(binary);
-        int length = binary.length;
-        int copyIndexOfResult = 1;
-        int checkIndex = 0;
-        char[] result = new char[length + 1];
-        if (isLittleEndian()) {
-            copyIndexOfResult = 0;
-            checkIndex = length;
-        }
-        System.arraycopy(binary, 0, result, copyIndexOfResult, length);
-        result[checkIndex] = generateParityCheckCode(binary);
-        return result;
-    }
-
-    @Override
-    public boolean check(char[] binary) {
-        ensureLegal(binary);
-        return isParityPass(xor(binary));
-    }
-
-    
-    protected byte xor(char[] binary) {
-        byte temp = 0;
-        for (char c : binary) {
-            temp ^= map.get(c);
-        }
-        return temp;
-    }
-
-    protected byte not(byte input) {
-        input ^= 1;
-        return input;
-    }
-
-    /**
-     * 根据源二进制数据生成P
-     *
-     * @param binary 源二进制数据
-     * @return P
-     */
-    protected char generateParityCheckCode(char[] binary) {
-        byte xorResult = xor(binary);
-        if (isOddCheck()) {
-            xorResult = not(xorResult);
-        }
-        return map.inverse().get(xorResult);
-    }
-
-
-    protected boolean isEvenCheck() {
-        return getCheckMethod().equals(CheckMethod.EVEN);
-    }
-
-
-    protected boolean isOddCheck() {
-        return !isEvenCheck();
-    }
-
-    /**
-     * E校验通过
-     *
-     * @param xorResult 异或值
-     * @return 结果
-     */
-    protected boolean isParityPass(byte xorResult) {
-        return (isEvenCheck() &amp;&amp; xorResult == 0) || (isOddCheck() &amp;&amp; xorResult == 1);
-    }
-
-    public CheckMethod getCheckMethod() {
-        return checkMethod;
-    }
-
-    public void setCheckMethod(CheckMethod checkMethod) {
-        this.checkMethod = checkMethod;
-    }
-
-    public void setEndian(Endian endian) {
-        this.endian = endian;
-    }
-
-    public boolean isBigEndian() {
-        return this.endian.equals(Endian.BIG);
-    }
-
-    public boolean isLittleEndian() {
-        return !isBigEndian();
-    }
-
-
-    public enum CheckMethod {
-        ODD,
-        EVEN
-    }
-
-    public enum Endian {
-        BIG,
-        LITTLE
-    }
-}
-
-</code></pre>
-<h1 id="测试">🐰测试</h1>
-<p>详见<code>ParityCheckCodeSpecification.java</code></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[关于]]></title>
-        <id>https://lugew.github.io/software-designer/post/about/</id>
-        <link href="https://lugew.github.io/software-designer/post/about/">
-        </link>
-        <updated>2020-06-08T08:05:52.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="本项目致力于用java代码抽象实现软考-软件设计师知识点">本项目致力于用java代码抽象/实现《软考-软件设计师》知识点</h1>
-]]></content>
-    </entry>
-</feed>
+    </script>
+  </body>
+</html>
